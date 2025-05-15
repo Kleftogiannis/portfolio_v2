@@ -1,100 +1,76 @@
-# Frontend Developer Portfolio
+# Ioannis Kleftogiannis | Frontend Developer Portfolio
 
-A modern, responsive portfolio website built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+Welcome to my portfolio repository! This project showcases my skills, experience, and projects as a frontend developer.
 
-## Features
+## 🚀 Live Demo
 
-- 🌙 Dark theme with a lavender color palette
-- 🎨 Modern UI with smooth animations using Framer Motion
-- 📱 Fully responsive design for all device sizes
-- ⚡ Fast performance with Next.js
-- 🔍 SEO-friendly
-- 🛠️ Built with TypeScript for type safety
+Visit my portfolio website: [https://kleftogiannis.github.io](https://kleftogiannis.github.io)
 
-## Sections
+## 💼 About Me
 
-- **Hero** - Eye-catching introduction with animated elements
-- **About** - Professional information and background
-- **Projects** - Showcase of recent work with descriptions and links
-- **Skills** - Visual representation of technical skills
-- **Contact** - Contact form and social media links
-- **Footer** - Copyright information and back-to-top button
+I'm a frontend developer with experience at companies like OKTO (fintech), ARHS Developments Hellas, and Solutionist. I specialize in building responsive, high-performance web applications using modern technologies.
 
-## Getting Started
+### Key Skills
 
-### Prerequisites
+- **Languages & Frameworks**: React, TypeScript, Next.js, JavaScript
+- **State Management**: Redux, Context API
+- **UI & Styling**: Tailwind CSS, CSS3, HTML5
+- **Tools & Testing**: Vite, Jest
 
-- Node.js 18.0.0 or later
-- npm or yarn
+## 🛠️ Technical Overview
 
-### Installation
+This portfolio is built with:
 
-1. Clone the repository
+- **Next.js** - React framework for server-rendered applications
+- **TypeScript** - For type safety and enhanced developer experience
+- **Tailwind CSS** - For responsive, utility-first styling
+- **Framer Motion** - For smooth animations and transitions
+
+## ✨ Features
+
+- **Responsive Design**: Looks great on all devices, from mobile to desktop
+- **Animated UI Elements**: Subtle animations enhance the user experience
+- **Project Showcase**: Highlighting my best work with detailed descriptions
+- **Contact Form**: Easy way for recruiters to reach out
+- **Dark/Light Mode**: Comfortable viewing experience regardless of preference
+
+## 🧰 Project Structure
+
+```
+portfolio/
+├── public/          # Static assets and resources
+│   ├── app/         # Next.js app directory and routing
+│   ├── components/  # Reusable UI components
+│   ├── styles/      # Global styles and theme configuration
+│   └── lib/         # Utility functions and helpers
+├── tailwind.config.js  # Tailwind CSS configuration
+└── tsconfig.json    # TypeScript configuration
+```
+
+## 📱 Contact
+
+Feel free to reach out to me:
+
+- **Email**: kleftojohn@gmail.com
+- **GitHub**: [Kleftogiannis](https://github.com/Kleftogiannis)
+- **LinkedIn**: [Ioannis Kleftogiannis](https://www.linkedin.com/in/ioannis-kleftogiannis-aa52ba21b/)
+
+## 🔄 Development
+
+To run this project locally:
+
 ```bash
-git clone https://github.com/yourusername/portfolio.git
+# Clone the repository
+git clone https://github.com/Kleftogiannis/portfolio.git
+
+# Navigate to the project directory
 cd portfolio
-```
 
-2. Install dependencies
-```bash
+# Install dependencies
 npm install
-# or
-yarn install
-```
 
-3. Run the development server
-```bash
+# Start the development server
 npm run dev
-# or
-yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Customization
-
-### Personal Information
-Update your personal information in the following files:
-- `src/components/layout/hero-section.tsx` - Update name and introduction
-- `src/components/layout/about-section.tsx` - Update professional information
-- `src/components/layout/contact-section.tsx` - Update contact information and social links
-
-### Projects
-Edit the projects array in `src/components/layout/projects-section.tsx` to showcase your own work.
-
-### Skills
-Modify the skill categories and levels in `src/components/layout/skills-section.tsx` to match your expertise.
-
-### Colors
-The color scheme can be modified in:
-- `tailwind.config.js` - Update the color palette
-- `src/app/globals.css` - Update the CSS variables
-
-## Deployment
-
-This portfolio can be easily deployed to platforms like Vercel, Netlify, or GitHub Pages:
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-## Technologies Used
-
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/)
-- [shadcn/ui](https://ui.shadcn.com/) (component patterns)
-
-## License
-
-This project is licensed under the MIT License.
-
-## Acknowledgments
-
-- Design inspired by modern portfolio trends
-- Animation techniques from Framer Motion documentation
-- Color palette based on lavender theme 
+Thank you for visiting my portfolio repository! I'm currently open to new opportunities and would love to connect. 
