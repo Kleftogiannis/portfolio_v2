@@ -4,7 +4,7 @@ Welcome to my portfolio repository! This project showcases my skills, experience
 
 ## 🚀 Live Demo
 
-Visit my portfolio website: [https://kleftogiannis.github.io](https://kleftogiannis.github.io)
+Visit my portfolio website: [https://kleftogiannis.com](https://kleftogiannis.com)
 
 ## 💼 About Me
 
