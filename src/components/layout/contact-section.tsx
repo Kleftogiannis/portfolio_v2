@@ -1,235 +1,188 @@
 "use client"
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Send, Copy, Check } from 'lucide-react'
 import { AnimatedElement } from '../ui/animated-element'
-import emailjs from '@emailjs/browser'
+import { Mail, Github, Linkedin, Code2, Copy, Check } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [submitError, setSubmitError] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // EmailJS integration
-    const templateParams = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message
-    }
-    
-    emailjs
-      .send(
-        process.env.CONTACT_SERVICE_ID as string,
-        process.env.CONTACT_TEMPLATE_ID as string,
-        templateParams,
-        {
-          publicKey: process.env.CONTACT_PUBLIC_KEY as string,
-        }
-      )
-      .then(
-        (response) => {
-          console.log('SUCCESS!', response.status, response.text);
-          setIsSubmitting(false);
-          setSubmitSuccess(true);
-          setFormData({ name: '', email: '', message: '' });
-          
-          // Reset success message after 5 seconds
-          setTimeout(() => {
-            setSubmitSuccess(false);
-          }, 5000);
-        },
-        (error) => {
-          console.log('FAILED...', error);
-          setIsSubmitting(false);
-          setSubmitError(true);
-          
-          // Reset error message after 5 seconds
-          setTimeout(() => {
-            setSubmitError(false);
-          }, 5000);
-        }
-      );
-  }
-
   const copyToClipboard = (email: string) => {
-    if (email) {
-      navigator.clipboard.writeText(email)
-        .then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        });
-    }
+    navigator.clipboard.writeText(email).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
   }
 
   const socialLinks = [
-    { 
-      name: 'Email', 
-      icon: <Mail size={20} />, 
-      url: 'mailto:kleftojohn@gmail.com',
-      value: 'kleftojohn@gmail.com' 
+    {
+      name: 'Email',
+      icon: <Mail className="w-5 h-5" />,
+      value: 'kleftojohn@gmail.com',
+      href: 'mailto:kleftojohn@gmail.com',
+      color: 'green',
+      copyable: true
     },
-    { name: 'GitHub', icon: <Github size={20} />, url: 'https://github.com/Kleftogiannis' },
-    { name: 'LinkedIn', icon: <Linkedin size={20} />, url: 'https://www.linkedin.com/in/ioannis-kleftogiannis-aa52ba21b/' },
+    {
+      name: 'GitHub',
+      icon: <Github className="w-5 h-5" />,
+      value: '@Kleftogiannis',
+      href: 'https://github.com/Kleftogiannis',
+      color: 'cyan',
+      copyable: false
+    },
+    {
+      name: 'LinkedIn',
+      icon: <Linkedin className="w-5 h-5" />,
+      value: 'Ioannis Kleftogiannis',
+      href: 'https://www.linkedin.com/in/ioannis-kleftogiannis-aa52ba21b/',
+      color: 'green',
+      copyable: false
+    }
   ]
 
   return (
-    <section id="contact" className="py-20 px-4 bg-background/30">
-      <div className="container mx-auto max-w-5xl">
-        <AnimatedElement 
+    <section id="contact" className="relative py-20 px-4 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 dot-matrix opacity-20" />
+      <div className="absolute inset-0 noise" />
+
+      <div className="container mx-auto max-w-4xl relative z-10">
+        {/* Section Header */}
+        <AnimatedElement
           className="text-center mb-16"
           animation="fadeIn"
           triggerOnce={true}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-2 gradient-text inline-block">Get In Touch</h2>
-          <div className="w-20 h-1 bg-lavender-300 mx-auto mt-2 mb-6 rounded-full" />
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to contact me!
+          <div className="inline-flex items-center gap-2 mb-4 glass px-4 py-2 rounded-full border border-green/30">
+            <Code2 className="w-4 h-4 text-green" />
+            <span className="font-mono text-sm text-green">contact.tsx</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="gradient-text">Get In Touch</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan to-green mx-auto rounded-full mb-6" />
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Let's connect and discuss how we can work together to create something amazing.
           </p>
         </AnimatedElement>
 
-        <div className="flex flex-col md:flex-row gap-12">
-          {/* Contact Info */}
-          <AnimatedElement 
-            className="flex-1"
-            animation="fadeInLeft"
-            triggerOnce={true}
-          >
-            <h3 className="text-xl font-semibold mb-6 text-lavender-200">Contact Information</h3>
-            <p className="text-foreground/70 mb-8">
-              I'm currently open to new opportunities and collaborations. If you have a project that could use my help or if you just want to say hi, don't hesitate to reach out!
-            </p>
-
-            {/* Social Links */}
-            <div className="flex flex-col gap-4">
-              {socialLinks.map(link => (
-                <div 
-                  key={link.name} 
-                  className="flex items-center gap-3"
-                >
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-lavender-400/10">
+        {/* Contact Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {socialLinks.map((link, index) => (
+            <motion.div
+              key={link.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="glass-strong rounded-2xl p-6 border border-green/20 hover:border-green/40 transition-all duration-300 group"
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Icon */}
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${
+                  link.color === 'cyan'
+                    ? 'from-cyan/20 to-cyan/5 border-cyan/30'
+                    : 'from-green/20 to-green/5 border-green/30'
+                } border flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <span className={link.color === 'cyan' ? 'text-cyan' : 'text-green'}>
                     {link.icon}
                   </span>
-                  {link.name === 'Email' ? (
-                    <div className="flex items-center gap-2 w-full">
-                      <a 
-                        href={link.url} 
-                        className="text-foreground/70 hover:text-lavender-300 transition-colors duration-200"
-                      >
-                        {link.value}
-                      </a>
-                      <button
-                        onClick={() => link.value && copyToClipboard(link.value)}
-                        className="ml-2 p-1.5 rounded-full hover:bg-lavender-400/10 transition-colors duration-200"
-                        title="Copy email to clipboard"
-                      >
-                        {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} className="text-lavender-300" />}
-                      </button>
-                    </div>
-                  ) : (
-                    <a 
-                      href={link.url} 
-                      className="text-foreground/70 hover:text-lavender-300 transition-colors duration-200"
-                      target="_blank" 
-                      rel="noopener noreferrer"
+                </div>
+
+                {/* Name */}
+                <h3 className="font-mono font-semibold text-lg mb-2">{link.name}</h3>
+
+                {/* Value with copy/link */}
+                <div className="flex items-center gap-2 w-full justify-center">
+                  <a
+                    href={link.href}
+                    className={`text-sm ${
+                      link.color === 'cyan' ? 'text-cyan' : 'text-green'
+                    } hover:underline font-mono transition-colors duration-200`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.value}
+                  </a>
+
+                  {link.copyable && (
+                    <button
+                      onClick={() => copyToClipboard(link.value)}
+                      className="p-1.5 rounded-lg glass hover:bg-green/10 transition-colors duration-200"
+                      title="Copy to clipboard"
                     >
-                      <span>{link.name}</span>
-                    </a>
+                      {copied ? (
+                        <Check size={14} className="text-green" />
+                      ) : (
+                        <Copy size={14} className="text-muted-foreground" />
+                      )}
+                    </button>
                   )}
                 </div>
-              ))}
-            </div>
-          </AnimatedElement>
-
-          {/* Contact Form */}
-          <AnimatedElement 
-            className="flex-1"
-            animation="fadeInRight"
-            delay={0.2}
-            triggerOnce={true}
-          >
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground/70 mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-lavender-300/50 focus:border-transparent transition-all duration-200"
-                />
               </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground/70 mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-lavender-300/50 focus:border-transparent transition-all duration-200"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground/70 mb-2">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-lavender-300/50 focus:border-transparent transition-all duration-200 resize-none"
-                />
-              </div>
-              <div className="rounded-lg bg-lavender-400/10 p-4 text-center">
-                <p className="text-lavender-200 mb-2">Contact form temporarily unavailable</p>
-                <p className="text-foreground/70 text-sm">Please email me directly or use the copy button above.</p>
-              </div>
-              <button
-                type="submit"
-                disabled={true}
-                className="w-full flex items-center justify-center gap-2 bg-lavender-400/50 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                <span>Send Message</span>
-                <Send size={16} />
-              </button>
-              
-              {submitSuccess && (
-                <div className="mt-4 p-3 bg-green-500/20 border border-green-500/50 text-green-400 rounded-lg text-sm text-center">
-                  Thank you! Your message has been sent successfully.
-                </div>
-              )}
-              
-              {submitError && (
-                <div className="mt-4 p-3 bg-red-500/20 border border-red-500/50 text-red-400 rounded-lg text-sm text-center">
-                  Something went wrong. Please try again later.
-                </div>
-              )}
-            </form>
-          </AnimatedElement>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Contact CTA */}
+        <AnimatedElement
+          customAnimation={{
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            transition: { duration: 0.6, delay: 0.3 },
+            viewport: { once: true }
+          }}
+          className="glass-strong rounded-2xl p-8 md:p-12 border border-green/20 text-center"
+        >
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              Ready to start a project?
+            </h3>
+            <p className="text-foreground/70 mb-8 leading-relaxed">
+              I'm currently <span className="text-green font-mono">available</span> for freelance work and full-time opportunities.
+              Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            </p>
+
+            <motion.a
+              href="mailto:kleftojohn@gmail.com"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg bg-gradient-to-r from-cyan to-green text-background font-mono font-medium hover:shadow-lg hover:shadow-green/30 transition-all duration-300"
+            >
+              <Mail className="w-5 h-5" />
+              <span>Send me an email</span>
+            </motion.a>
+          </div>
+
+          {/* Code snippet decoration */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-8 glass rounded-xl p-6 inline-block border border-green/20 font-mono text-sm text-left"
+          >
+            <div className="flex items-center gap-2 mb-3 text-muted-foreground">
+              <span className="text-green">// </span>
+              <span>Let's collaborate</span>
+            </div>
+            <pre className="text-foreground/80">
+              <code>
+                <span className="text-cyan">const</span> <span className="text-foreground">contact</span> <span className="text-cyan">=</span> <span className="text-cyan">{'{'}</span>
+                {'\n  '}<span className="text-green">email</span><span className="text-cyan">:</span> <span className="text-yellow-400">"kleftojohn@gmail.com"</span><span className="text-cyan">,</span>
+                {'\n  '}<span className="text-green">status</span><span className="text-cyan">:</span> <span className="text-yellow-400">"available"</span><span className="text-cyan">,</span>
+                {'\n  '}<span className="text-green">responseTime</span><span className="text-cyan">:</span> <span className="text-yellow-400">"24 hours"</span>
+                {'\n'}<span className="text-cyan">{'}'}</span>
+              </code>
+            </pre>
+          </motion.div>
+        </AnimatedElement>
       </div>
     </section>
   )
 }
 
-export default ContactSection 
+export default ContactSection

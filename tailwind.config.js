@@ -16,46 +16,41 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(240 3.7% 15.9%)",
-        input: "hsl(240 3.7% 15.9%)",
-        ring: "hsl(262.1 83.3% 57.8%)",
-        background: "hsl(240 10% 3.9%)",
-        foreground: "hsl(0 0% 98%)",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(262.1 83.3% 57.8%)", // Medium Purple (#9370DB)
-          foreground: "hsl(0 0% 98%)",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(260 52.3% 77.3%)", // Light Lavender (#B19CD9)
-          foreground: "hsl(0 0% 9%)",
-        },
-        lavender: {
-          100: "hsl(240 85.7% 97.3%)", // Lavender Mist (#E6E6FA)
-          200: "hsl(260 52.3% 77.3%)", // Light Lavender (#B19CD9)
-          300: "hsl(262.1 83.3% 57.8%)", // Medium Purple (#9370DB)
-          400: "hsl(271.3 75.6% 53.1%)", // Deep Purple (#8A2BE2)
-          500: "hsl(273 91% 40%)", // Darker Purple
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(0 62.8% 30.6%)",
-          foreground: "hsl(0 0% 98%)",
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(240 3.7% 15.9%)",
-          foreground: "hsl(240 5% 64.9%)",
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(240 3.7% 15.9%)",
-          foreground: "hsl(0 0% 98%)",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: "hsl(240 10% 3.9%)",
-          foreground: "hsl(0 0% 98%)",
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(240 10% 3.9%)",
-          foreground: "hsl(0 0% 98%)",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
+        cyan: "hsl(var(--cyan))",
+        green: "hsl(var(--green))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -75,6 +70,10 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Inter', 'sans-serif'],
       },
     },
   },
