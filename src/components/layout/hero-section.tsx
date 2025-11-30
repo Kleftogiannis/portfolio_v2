@@ -213,7 +213,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator - Right side */}
-      <motion.div
+      {/* <motion.div
         className="absolute bottom-8 right-8 z-20"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -233,7 +233,7 @@ const HeroSection = () => {
             />
           </motion.div>
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }

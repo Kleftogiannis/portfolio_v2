@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Github, ExternalLink, Code2, FolderGit2 } from 'lucide-react'
 import { AnimatedElement } from '../ui/animated-element'
 
@@ -12,6 +13,7 @@ const projects = [
     tags: ["Next.js", "TypeScript", "Supabase", "Stripe", "Clerk"],
     githubUrl: null,
     liveUrl: "https://ourchapter.app",
+    previewUrl: null,
     status: "Live",
     featured: false
   },
@@ -21,6 +23,7 @@ const projects = [
     tags: ["React", "TypeScript", "Recharts", "Zustand"],
     githubUrl: null,
     liveUrl: "#",
+    previewUrl: null,
     status: "In Development",
     featured: false
   },
@@ -30,6 +33,7 @@ const projects = [
     tags: ["React", "Node.js", "PostgreSQL", "Socket.io"],
     githubUrl: null,
     liveUrl: "#",
+    previewUrl: null,
     status: "Planning",
     featured: false
   }
@@ -47,6 +51,20 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0], index: n
         project.featured ? 'lg:col-span-2' : ''
       }`}
     >
+      {/* Preview Image */}
+      {project.previewUrl && (
+        <div className="relative w-full h-48 md:h-56 overflow-hidden border-b border-green/20">
+          <Image
+            src={project.previewUrl}
+            alt={`${project.title} preview`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/90" />
+        </div>
+      )}
+
       {/* Background Pattern */}
       <div className="absolute inset-0 dot-matrix-dense opacity-20" />
       <div className="absolute inset-0 noise opacity-50" />
