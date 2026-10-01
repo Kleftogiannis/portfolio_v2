@@ -103,7 +103,7 @@ const AboutSection = () => {
 
               {/* Download CV Button */}
               <motion.a
-                href="/Kleftogiannis_Ioannis_CV.pdf"
+                href="/Kleftogiannis_Ioannis_CV_2026.pdf"
                 download
                 className="group relative mt-8 w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-gradient-to-r from-cyan to-green text-background font-mono font-medium overflow-hidden"
                 onHoverStart={() => setIsHovered(true)}
